@@ -2,11 +2,7 @@ name: Demo App Android Release
 
 on:
   push:
-<<<<<<< HEAD
     branches: [ main ]
-=======
-    branches: [ master ]
->>>>>>> 16afdb26b53643e0c0c28715d4fabddb7057336e
 
 jobs:
   build:
