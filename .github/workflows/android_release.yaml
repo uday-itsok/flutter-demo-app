@@ -1,45 +1,23 @@
-#The name of the workflow
-name: Test, Build and Release apk
+name: Demo App Android Release
 
-#This is when a version tag is pushed to the warehouse
 on:
   push:
-    branches:
-      - main
-      - master
-      - dev
-    tags:
-      - v*
+    branches: [ main ]
 
-#The tasks that this workflow needs to perform
 jobs:
-  process:
-    name: all process
+  build:
     runs-on: ubuntu-latest
-    #The steps of this task
     steps:
-      #Pull item code
       - uses: actions/checkout@v2
-      #Establishing Java environment
-      - name: Setup Java JDK
-        uses: actions/setup-java@v1.3.0
+      - uses: subosito/flutter-action@v1
         with:
-          java-version: "12.x"
-      #Building a flutter environment
-      - name: Flutter action
-        uses: subosito/flutter-action@v1.1.1
-        with:
-          channel: "stable"
-          flutter-version: "1.12.x"
-      #Download project dependencies
+          flutter-version: "2.2.0"
       - run: flutter pub get
-      #Perform the test
-      - run: flutter test
-      #Package apk
-      - run: flutter build apk --release
-      #Publish to release
-      - name: Release apk
-        uses: ncipollo/release-action@v1.5.0
+      - run: flutter analyze
+      - run: flutter test --coverage
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
         with:
           artifacts: "build/app/outputs/apk/release/*.apk,build/app/outputs/bundle/release/app-release.aab"
           token: "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"
+          tag: "v1.0.0"
