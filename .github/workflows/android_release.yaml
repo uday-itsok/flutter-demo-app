@@ -13,7 +13,6 @@ jobs:
         with:
           flutter-version: "2.2.0"
       - run: flutter pub get
-      - run: flutter analyze
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
