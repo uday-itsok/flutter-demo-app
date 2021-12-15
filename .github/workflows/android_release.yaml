@@ -17,5 +17,5 @@ jobs:
         uses: codecov/codecov-action@v1
         with:
           artifacts: "build/app/outputs/apk/release/*.apk,build/app/outputs/bundle/release/app-release.aab"
-          token: "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"
+          token: "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"
           tag: "v1.0.0"
