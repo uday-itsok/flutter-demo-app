@@ -23,7 +23,8 @@ jobs:
       #   run: flutter test
 
       - name: build apks
-        run: flutter build apk --debug --split-per-abi #Change to release mode if needed
+        # run: flutter build apk --debug --split-per-abi #Change to release mode if needed
+        run: flutter build apk --debug 
 
       - name: push apks to Releases
         uses: ncipollo/release-action@v1
